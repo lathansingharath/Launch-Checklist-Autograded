@@ -44,72 +44,38 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     let cargoValid = validateInput(cargoLevel);
 
     //the block code is a very long nested if statements that first make sure all the data is valid before displaying on the page
-    if (politValid === "Not a Number"){  
-        if (copolitValid ==="Not a Number"){     
-            if (fuelValid ==="Is a Number") {          
-                if (cargoValid === "Is a Number"){
-                
-                    ////Once all date is valid it the below is more if statements to determine what gets diplayed
-                    list.style.visibility = "visible";
-                    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
-                    copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
-                    if (fuelLevel < 10000) {
-                        list.style.visibility = "visible";
-                        fuelStatus.innerHTML = "Fuel level too low for launch";
-                        launchStatus.innerHTML = "Shuttle Not Ready for Launch";
-                        launchStatus.style.color = "red";
-                        if (cargoLevel < 10000) {
-                            cargoStatus.innerHTML = "Cargo mass low enough for launch";
-                         } else {
-                             cargoStatus.innerHTML = "Cargo mass too heavy for launch";                           
-                         }          
-                     } else if (fuelLevel >= 10000) { 
-                         list.style.visibility = "visible";
-                         fuelStatus.innerHTML = "Fuel level high enough for launch";
-                         if (cargoLevel < 10000) {
-                             cargoStatus.innerHTML = "Cargo mass low enough for launch";
-                             launchStatus.innerHTML = "Shuttle is Ready for Launch";
-                             launchStatus.style.color = "green"; 
-                          } else {
-                             cargoStatus.innerHTML = "Cargo mass too heavy for launch";
-                             launchStatus.style.color = "red";
-                             launchStatus.innerHTML = "Shuttle Not Ready for Launch";
-                             }
-                         } 
-                //The else if and nest if statements below determins what gets diplayed if there is invalid input
-                //there is a also a submitCounter global variable to keep track of how many clicks.
-                //if the user clicks button for the 2nd time with invalid info, if gives a different alert.             
-                } else if (cargoValid ==="Not a Number" || cargoValid === "Empty") {
-                    if (submitCounter > 1) {
-                        alert("Please remember to input valid fields");
-                    } else {
-                        alert("All valid fields are required");
-                    }                
-                }
-            } else if (fuelValid ==="Not a Number" || fuelValid === "Empty") {
-               
-                if (submitCounter > 1) {
-                    alert("Please remember to input valid fields");
-                } else {
-                    alert("All valid fields are required");
-                }
+    if (politValid === "Empty" || copolitValid === "Empty" || fuelValid === "Empty" || cargoValid === "Empty") {
+        alert("Invalid Input");
 
-            }
-        } else if (copolitValid ==="Is a Number" || copolitValid ==="Empty"){
-          
-            if (submitCounter > 1) {
-                alert("Please remember to input valid fields");
-            } else {
-                alert("All valid fields are require");
-            }
-        }
-    } else if (politValid ==="Is a Number" || politValid ==="Empty"){
-      
-        if (submitCounter > 1) {
-            alert("Please remember to input valid fields");
-        } else {
-            alert("All valid fields are require");
-        }
+    } else if (politValid === "Is a Number" || copolitValid === "Is a Number" || fuelValid === "Not a Number" || cargoValid === "Not a Number"){
+        alert("Invalid Input");   
+    } else {
+        list.style.visibility = "visible";
+        pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+        if (fuelLevel < 10000) {
+            list.style.visibility = "visible";
+            fuelStatus.innerHTML = "Fuel level too low for launch";
+            launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+            launchStatus.style.color = "red";
+            if (cargoLevel < 10000) {
+                cargoStatus.innerHTML = "Cargo mass low enough for launch";
+             } else {
+                 cargoStatus.innerHTML = "Cargo mass too heavy for launch";                           
+             }          
+         } else if (fuelLevel >= 10000) { 
+             list.style.visibility = "visible";
+             fuelStatus.innerHTML = "Fuel level high enough for launch";
+             if (cargoLevel < 10000) {
+                 cargoStatus.innerHTML = "Cargo mass low enough for launch";
+                 launchStatus.innerHTML = "Shuttle is Ready for Launch";
+                 launchStatus.style.color = "green"; 
+              } else {
+                 cargoStatus.innerHTML = "Cargo mass too heavy for launch";
+                 launchStatus.style.color = "red";
+                 launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+                 }
+             } 
     }
   
  }
